@@ -53,6 +53,7 @@ class MemoryManagementApp:
         self.result_display = tk.Text(self.root, width=50, height=10)
         self.result_display.grid(row=3, column=0, columnspan=2)
 
+    # Add memory block sizes for allocation
     def add_memory_blocks(self):
         try:
             # Get the memory block sizes
@@ -62,6 +63,7 @@ class MemoryManagementApp:
         except ValueError:
             messagebox.showerror("Input Error", "Invalid memory block sizes.")
 
+    # Add process sizes for allocation
     def add_processes(self):
         try:
             # Get the process sizes
@@ -71,6 +73,7 @@ class MemoryManagementApp:
         except ValueError:
             messagebox.showerror("Input Error", "Invalid process sizes.")
 
+    # Allocate memory and display result
     def allocate_memory(self):
         if not self.memory_blocks or not self.processes:
             messagebox.showerror("Error", "Please define both memory blocks and processes first.")
@@ -79,6 +82,7 @@ class MemoryManagementApp:
         allocation_result = self.next_fit_algorithm()
         self.update_result_display(allocation_result)
 
+    # Function to allocate the processes
     def next_fit_algorithm(self):
         allocation_result = []
         current_block = self.last_allocated_index
@@ -98,6 +102,7 @@ class MemoryManagementApp:
                     break
         return "\n".join(allocation_result)
 
+    # Display results
     def update_result_display(self, message):
         self.result_display.delete(1.0, tk.END)
         self.result_display.insert(tk.END, message)
